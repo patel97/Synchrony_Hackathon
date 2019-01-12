@@ -8,9 +8,19 @@ from .models import *
 # Create your views here.
 def dashboard(request):
 	if request.user.is_authenticated():
-		up = user_profile.objects.get(user_detail=request.user)
+		up = UserProfile.objects.get(user_detail=request.user)
 		print(up.emp_Id)
-		return render(request,'index.html',{"up" : up})
+		team = Team.objects.all()
+		print(team)
+		leaderboard = UserProfile.objects.all().order_by('-level_points')[0:5]
+		print(leaderboard)
+		for a in leaderboard:
+			print(a.level_points)
+		team_mem = TeamMembers.objects.get(user_profile = up)
+		all_mem = TeamMembers.objects.filter(team = team_mem.team)
+		for i in all_mem:
+			print(i.team.name)	
+		return render(request,'index.html',{"up" : up, "team":team, "leaderboard":leaderboard, "all_mem":all_mem})
 
 def login_site(request):
 	if request.method == 'POST':

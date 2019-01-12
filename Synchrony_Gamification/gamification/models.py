@@ -56,8 +56,8 @@ class BettingBets(models.Model):
 	os_bet = models.CharField(max_length=20, null=True)
 	fcr = models.CharField(max_length=20, null=True)
 	fcr_bet = models.CharField(max_length=20, null=True)
-	sav = models.CharField(max_length=20, null=True)
-	sav_bet = models.CharField(max_length=20, null=True)
+	no_of_queries_solved = models.CharField(max_length=20, null=True)
+	no_of_queries_solved_bet = models.CharField(max_length=20, null=True)
 	total_bet = models.CharField(max_length=20, null=True)
 	total_win = models.CharField(max_length=20, null=True)
 	date = models.DateField(default=datetime.date.today)
@@ -87,8 +87,8 @@ class Team(models.Model):
 	team_cct = models.IntegerField()
 	team_os = models.IntegerField()
 	team_fcr = models.IntegerField()
-	tema_sav = models.IntegerField()
-	date = models.DateField(default=datetime.date.today)
+	total_Queries_Solved = models.IntegerField()
+	
 	
 	def __str__(self):
 		return '%s' % (self.name)

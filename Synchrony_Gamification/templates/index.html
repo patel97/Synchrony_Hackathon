@@ -20,7 +20,7 @@
     </div>
 </div>
 <!-- start widget -->
-<div class="row">
+<!-- <div class="row">
     <div class="state-overview">
         <div class="col-lg-3 col-sm-6">
             <div class="overview-panel purple">
@@ -67,7 +67,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- end widget -->
 <!-- chart start -->
 <div class="row">
@@ -159,21 +159,22 @@
                                         <span></span>
                                     </label>
                                 </th> -->
-                                <th>Team Name</th>
+                                <th>Team---Name  </th>
                                 <th>Location</th>
                                 <th>Team Leader</th>
                                 <th>Score</th>
-                                <th>No. of FCR</th>
+                                <th>No. of Queries Solved</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for i in team %}
                             <tr class="odd gradeX ">
-                                <td> thecoders </td>
+                                <td style="width:100px;"> {{i.name}} </td>
                                 <td>
-                                    Mumbai    
+                                    {{i.location}}  
                                 </td>
-                                <td class="center">Krutik</td>
-                                <td class="center"> 142</td>
+                                <td class="center">{{i.team_leader}}</td>
+                                <td class="center"> {{i.team_os}}</td>
                                 <td class="center">
                                     <!-- <div class="btn-group">
 
@@ -197,9 +198,10 @@
                                             </li>
                                         </ul>
                                     </div> -->
-                                    73
+                                    {{i.total_Queries_Solved}}
                                 </td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -219,20 +221,21 @@
             <div class="card-body no-padding height-9">
                 <div class="row">
                     <ul class="docListWindow">
+                        {% for i in leaderboard %}
                         <li>
                             <div class="prog-avatar">
                                 <img src="img/doc/doc1.svg" alt="" width="40" height="40">
                             </div>
                             <div class="details">
                                 <div class="title">
-                                    <a href="#">Dr.Rajesh</a> -(MBBS,MD)
+                                    <a href="#">{{i.name}}</a> 
                                 </div>
                                 <div>
-                                    <span class="clsAvailable">Available</span>
+                                    <span class="clsAvailable">{{i.level_points}}</span>
                                 </div>
                             </div>
                         </li>
-                        <li>
+                        <!-- <li>
                             <div class="prog-avatar">
                                 <img src="img/doc/doc2.svg" alt="" width="40" height="40">
                             </div>
@@ -296,11 +299,12 @@
                                     <span class="clsAvailable">Available</span>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
+                        {% endfor %}
                     </ul>
-                    <div class="text-center">
+                    <!-- <div class="text-center">
                         <a href="#">View all</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -311,7 +315,7 @@
     <div class="col-md-12 col-sm-12">
         <div class="card  card-topline-yellow">
             <div class="card-head">
-                <header>ADMIT PATIENT LIST</header>
+                <header>Team Members</header>
                 <div class="tools">
                     <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
                     <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
@@ -326,28 +330,31 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Name</th>
-                                    <th>Assigned Doctor</th>
-                                    <th>Date Of Admit</th>
-                                    <th>Diseases</th>
-                                    <th>Room No</th>
-                                    <th>Edit</th>
+                                    <th>Gender</th>
+                                    <th>Level Points</th>
+                                    <th>Betting Points</th>
+                                    <!-- <th>Room No</th>
+                                    <th>Edit</th> -->
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for i in all_mem %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>Jens Brincker</td>
-                                    <td>Dr.Kenny Josh</td>
-                                    <td>27/05/2016</td>
-                                    <td>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{i.user_profile.name}}</td>
+                                    <td>{{i.user_profile.gender}}</td>
+                                    <td>{{i.user_profile.level_points}}</td>
+                                    <td>{{i.user_profile.betting_points}}</td>
+                                    <!-- <td>
                                         <span class="label label-sm label-success">Influenza</span>
                                     </td>
-                                    <td>101</td>
-                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                    <td>101</td> -->
+                                    <!-- <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
                                                 class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
-                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td> -->
                                 </tr>
-                                <tr>
+                                {% endfor %}
+                                <!-- <tr>
                                     <td>2</td>
                                     <td>Mark Hay</td>
                                     <td>Dr. Mark</td>
@@ -437,7 +444,7 @@
                                     <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
                                                 class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
                                             title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
