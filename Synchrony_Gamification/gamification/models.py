@@ -63,7 +63,7 @@ class BettingBets(models.Model):
 	date = models.DateField(default=datetime.date.today)
 
 	def __str__(self):
-		return '%s' % (self.user_detail)
+		return '%s' % (self.user_profile)
 
 
 class Level(models.Model):
@@ -100,3 +100,11 @@ class TeamMembers(models.Model):
 
 	def __str__(self):
 		return '%s' % (self.team)
+
+class Trading(models.Model):
+	issuer_name = models.CharField(max_length=1000)
+	duration = models.IntegerField()
+	trade_no = models.IntegerField(primary_key=True)
+	claimer_name = models.CharField(max_length=1000,blank=True)
+	creds = models.IntegerField()
+	available = models.BooleanField(default=True)

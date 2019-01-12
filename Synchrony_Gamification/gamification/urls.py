@@ -20,7 +20,9 @@ from . import views
 urlpatterns = [
     url(r'^dashboard/', views.dashboard),
     url(r'^profile/', views.profile),
+    url(r'^trading/', views.trading),
     url(r'^bet/', views.bet),
     url(r'^create_trade/', views.create_trade),
     url(r'^logout_complete/', views.logout_complete),
+    url(r'^betting_status/', views.bettingstatus),
 ]

@@ -1,0 +1,390 @@
+{% extends 'base.html' %} {% block content %}
+
+{% load static %}
+
+<script>
+    var name = "{{up.name}}";
+    console.log(name);
+</script>
+
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+            <div class="page-title">Dashboard</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+            </li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </div>
+</div>
+<!-- start widget -->
+<!-- <div class="row">
+    <div class="state-overview">
+        <div class="col-lg-3 col-sm-6">
+            <div class="overview-panel purple">
+                <div class="symbol">
+                    <i class="fa fa-users usr-clr"></i>
+                </div>
+                <div class="value white">
+                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="23">0</p>
+                    <p>APPOINTMENTS</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="overview-panel green-bgcolor">
+                <div class="symbol">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="value white">
+                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="48">0</p>
+                    <p>NEW PATIENTS</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="overview-panel orange">
+                <div class="symbol">
+                    <i class="fa fa-heartbeat"></i>
+                </div>
+                <div class="value white">
+                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="14">0</p>
+                    <p>TODAY'S OPT</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="overview-panel blue-bgcolor">
+                <div class="symbol">
+                    <i class="fa fa-money"></i>
+                </div>
+                <div class="value white">
+                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="3421">0</p><span>$</span>
+                    <p>Hospital Earning</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- end widget -->
+<!-- chart start -->
+
+<!-- Chart end -->
+
+<!-- start admited patient list -->
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card  card-topline-yellow">
+            <div class="card-head">
+                <header>Open Trade</header>
+                <!-- <div class="tools">
+                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                </div> -->
+            </div>
+            <div class="card-body ">
+                <div class="table-wrap">
+                    <div class="table-responsive">
+                        <table class="table display product-overview mb-30" id="support_table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Duration</th>
+                                    <th>Creds</th>
+                                    <th>Action</th>
+                                    <!-- <th>Room No</th>
+                                    <th>Edit</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in t %}
+                                <tr>
+                                    <!-- 
+                                    <td>{{ forloop.counter }}</td> -->
+                                    <form action="/trading/" method="POST">
+                                        {% csrf_token %}
+                                        <input value="{{i.issuer_name}}" name="iname" hidden>
+                                        <input value="{{i.duration}}" name="duration" hidden>
+                                        <input value="{{i.creds}}" name="creds" hidden>
+
+                                        <td>{{i.issuer_name}}</td>
+                                        <td>{{i.duration}}</td>
+                                        <td>{{i.creds}}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="submit" class="btn btn-primary"> Accept
+                                                </button>
+
+                                            </div>
+                                        </td>
+                                    </form>
+                                    <!-- <td>
+                                        <span class="label label-sm label-success">Influenza</span>
+                                    </td>
+                                    <td>101</td> -->
+                                    <!-- <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td> -->
+                                </tr>
+                                {% endfor %}
+                                <!-- <tr>
+                                    <td>2</td>
+                                    <td>Mark Hay</td>
+                                    <td>Dr. Mark</td>
+                                    <td>26/05/2017</td>
+                                    <td>
+                                        <span class="label label-sm label-warning"> Cholera </span>
+                                    </td>
+                                    <td>105</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Anthony Davie</td>
+                                    <td>Dr.Cinnabar</td>
+                                    <td>21/05/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-success ">Amoebiasis</span>
+                                    </td>
+                                    <td>106</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>David Perry</td>
+                                    <td>Dr.Felix </td>
+                                    <td>20/04/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-danger">Jaundice</span>
+                                    </td>
+                                    <td>105</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Anthony Davie</td>
+                                    <td>Dr.Beryl</td>
+                                    <td>24/05/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-success ">Leptospirosis</span>
+                                    </td>
+                                    <td>102</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Alan Gilchrist</td>
+                                    <td>Dr.Joshep</td>
+                                    <td>22/05/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-warning ">Hepatitis</span>
+                                    </td>
+                                    <td>103</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Mark Hay</td>
+                                    <td>Dr.Jayesh</td>
+                                    <td>18/06/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-success ">Typhoid</span>
+                                    </td>
+                                    <td>107</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>Sue Woodger</td>
+                                    <td>Dr.Sharma</td>
+                                    <td>17/05/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-danger">Malaria</span>
+                                    </td>
+                                    <td>108</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card  card-topline-yellow">
+            <div class="card-head">
+                <header>Closed Trade</header>
+                <!-- <div class="tools">
+                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                </div> -->
+            </div>
+            <div class="card-body ">
+                <div class="table-wrap">
+                    <div class="table-responsive">
+                        <table class="table display product-overview mb-30" id="support_table">
+                            <thead>
+                                <tr>
+                                    <th>Issuer Name</th>
+                                    <th>Claimer Name</th>
+                                    <th>Duration</th>
+                                    <th>Creds</th>
+                                    <!-- <th>Room No</th>
+                                    <th>Edit</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in ct %}
+                                <tr>
+                                    <!-- 
+                                    <td>{{ forloop.counter }}</td> -->
+                                    <td>{{i.issuer_name}}</td>
+                                    <td>{{i.claimer_name}}</td>
+                                    <td>{{i.duration}}</td>
+                                    <td>{{i.creds}}</td>
+
+                                    <!-- <td>
+                                        <span class="label label-sm label-success">Influenza</span>
+                                    </td>
+                                    <td>101</td> -->
+                                    <!-- <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td> -->
+                                </tr>
+                                {% endfor %}
+                                <!-- <tr>
+                                    <td>2</td>
+                                    <td>Mark Hay</td>
+                                    <td>Dr. Mark</td>
+                                    <td>26/05/2017</td>
+                                    <td>
+                                        <span class="label label-sm label-warning"> Cholera </span>
+                                    </td>
+                                    <td>105</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Anthony Davie</td>
+                                    <td>Dr.Cinnabar</td>
+                                    <td>21/05/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-success ">Amoebiasis</span>
+                                    </td>
+                                    <td>106</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>David Perry</td>
+                                    <td>Dr.Felix </td>
+                                    <td>20/04/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-danger">Jaundice</span>
+                                    </td>
+                                    <td>105</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Anthony Davie</td>
+                                    <td>Dr.Beryl</td>
+                                    <td>24/05/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-success ">Leptospirosis</span>
+                                    </td>
+                                    <td>102</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Alan Gilchrist</td>
+                                    <td>Dr.Joshep</td>
+                                    <td>22/05/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-warning ">Hepatitis</span>
+                                    </td>
+                                    <td>103</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Mark Hay</td>
+                                    <td>Dr.Jayesh</td>
+                                    <td>18/06/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-success ">Typhoid</span>
+                                    </td>
+                                    <td>107</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>Sue Woodger</td>
+                                    <td>Dr.Sharma</td>
+                                    <td>17/05/2016</td>
+                                    <td>
+                                        <span class="label label-sm label-danger">Malaria</span>
+                                    </td>
+                                    <td>108</td>
+                                    <td><a href="javascript:void(0)" class="" data-toggle="tooltip" title="Edit"><i
+                                                class="fa fa-check"></i></a> <a href="javascript:void(0)" class="text-inverse"
+                                            title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end admited patient list -->
+{% load static %}
+<script src="{% static 'assets/js/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/jquery.blockui.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/bootstrap-switch/js/bootstrap-switch.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/counterup/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/counterup/jquery.counterup.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'assets/js/app.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/layout.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/Chart.bundle.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/utils.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/home-data.js' %}" type="text/javascript"></script>
+
+{% endblock content %}

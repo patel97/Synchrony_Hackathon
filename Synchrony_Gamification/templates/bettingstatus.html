@@ -1,0 +1,131 @@
+{% extends 'base.html' %} {% block content %}
+
+{% load static %}
+
+
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+            <div class="page-title">Dashboard</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+            </li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </div>
+</div>
+<!-- start widget -->
+<div class="row">
+    <div class="state-overview">
+
+        <div class="col-lg-4 col-sm-6">
+            <div class="overview-panel purple col-lg-offset-2">
+                <div class="symbol">
+                    <i class="fa fa-arrow"></i>
+                </div>
+                <div class="value white">
+                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="23">0</p><span style="font-size : 30px">%</span>
+                    <p>FCR</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="overview-panel green-bgcolor col-lg-offset-2">
+                <div class="symbol">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="value white">
+                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="48">0</p><span style="font-size : 30px">%</span>
+                    <p>SATISFACTION</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="overview-panel orange col-lg-offset-2">
+                <div class="symbol">
+                    <i class="fa fa-heartbeat"></i>
+                </div>
+                <div class="value white">
+                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="14">0</p><span style="font-size : 30px">%</span>
+                    <p>No. Of Queries</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-topline-red">
+            <div class="card-head">
+                <header>BETTING TRENDS</header>
+                <div class="tools">
+                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                </div>
+            </div>
+            <div class="card-body " id="chartjs_line_parent">
+                <div class="row">
+                    <canvas id="chart_bet"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-topline-lightblue">
+            <div class="card-head">
+                <header>QCAL BETTING HISTORY</header>
+                <div class="tools">
+                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                </div>
+            </div>
+            <div class="card-body " id="chartjs_bar_parent">
+                <div class="row">
+                    <canvas id="chartjs_bar_cct"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-topline-lightblue">
+            <div class="card-head">
+                <header>CCT BETTING HISTORY</header>
+                <div class="tools">
+                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                </div>
+            </div>
+            <div class="card-body " id="chartjs_bar_parent">
+                <div class="row">
+                    <canvas id="chartjs_bar_qcal"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end admited patient list -->
+{% load static %}
+<script src="{% static 'assets/js/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/jquery.blockui.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/bootstrap-switch/js/bootstrap-switch.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/counterup/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/counterup/jquery.counterup.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'assets/js/app.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/layout.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/Chart.bundle.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/utils.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/home-data.js' %}" type="text/javascript"></script>
+
+{% endblock content %}
