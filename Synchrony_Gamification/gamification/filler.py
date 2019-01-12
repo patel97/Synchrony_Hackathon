@@ -1,7 +1,5 @@
-from .models import *
+from .models import UserJson, UserProfile, User
 import json
-
-
 
 
 def fillusers():
@@ -17,47 +15,73 @@ def fillusers():
                 u = User.objects.create(username=i['emp_Id'],password=password)
                 u.set_password(password)
                 u.save()
-                up = user_profile.objects.create(user_detail=u,emp_Id=i['emp_Id'],name = i['name'],
+                up = UserJson.objects.create(user_detail=u,emp_Id=i['emp_Id'],name = i['name'],
                     vocScoresForLast2months=i['vocScoresForLast2months'],avgCCTForLast7Days=i['avgCCTForLast7days'],
                     gender = i['gender'],dateofJoining = i['dateofJoining'], birthDate = i['birthDate'], 
                     currentCCT = i['currentCCT'], totalVOCScore = i['totalVOCScore'], total_Calls = i['total_Calls'], 
                     auxOutTimeHrs = i['auxOutTime_Hrs'], qcal_Score = i['qcal_Score'], schedule_Hrs = i['scheduled_Hrs'],
-                     sales_Audit_Verification_Percent = i['sales_Audit_Verification_Percent'],
-                      staffed_Hrs = i['staffed_Hrs'],fcr_Rate=i['fcr_Rate'],sales_Coverted=i['sales_Coverted'],
-                      cctRanking=i['cctranking'],aux_Exception_Hrs=i['aux_Exception_Hrs'])
+                    sales_Audit_Verification_Percent = i['sales_Audit_Verification_Percent'],
+                    staffed_Hrs = i['staffed_Hrs'],fcr_Rate=i['fcr_Rate'],sales_Coverted=i['sales_Coverted'],
+                    cctRanking=i['cctranking'],aux_Exception_Hrs=i['aux_Exception_Hrs'])
                 up.save()
-    # password = 'asdasdasd'
-    # instituteemailid = 'ikbal@asd.com'
-    # instructoremailid = 'ikbal@gmail'
 
-    # userinstitute = User.objects.create(email=instituteemailid,password=password)
-    # userinstitute.set_password(password)
-    # userinstitute.save()
+                user = UserProfile.objects.create(user_detail=u, emp_Id=up.emp_Id, name=up.name, 
+                    gender=up.gender,dateofJoining=up.dateofJoining, birthDate=up.birthDate)
+                user.save()
 
 
-    # ins = Institute.objects.create(ins_no='i0001',name='asd',ph_no='12345678',address_point='09876543',landmark='sdfgh',city='asdfg',state='asdasdasdasdasd',pincode='23456',user_detail=userinstitute,contact_no='098762345')
-    # ins.save()
 
-    # utype = user_type.objects.create(user_detail=userinstitute,types=1)
-    # utype.save()
+# class BettingBets(models.Model):
+#     user_profile = models.ForeignKey(UserProfile)
+#     cct = models.CharField(max_length=20, null=True)
+#     cct_bet = models.CharField(max_length=20, null=True)
+#     qual_score = models.CharField(max_length=20, null=True)
+#     qual_score_bet = models.CharField(max_length=20, null=True)
+#     os = models.CharField(max_length=20, null=True)
+#     os_bet = models.CharField(max_length=20, null=True)
+#     fcr = models.CharField(max_length=20, null=True)
+#     fcr_bet = models.CharField(max_length=20, null=True)
+#     sav = models.CharField(max_length=20, null=True)
+#     sav_bet = models.CharField(max_length=20, null=True)
+#     total_bet = models.CharField(max_length=20, null=True)
+#     total_win = models.CharField(max_length=20, null=True)
+#     date = models.DateField(default=datetime.date.today)
+
+#     def __str__(self):
+#         return '%s' % (self.user_detail)
 
 
-    # userinstructor = User.objects.create(email=instructoremailid,password=password)
-    # userinstructor.set_password(password)
-    # userinstructor.save()
+# class Level(models.Model):
+#     user_profile = models.ForeignKey(UserProfile,  related_name='user_profile_level')
+#     cct = models.IntegerField(null=True, blank=True, default=0)
+#     qual_score = models.IntegerField(null=True, blank=True, default=0)
+#     os = models.IntegerField(null=True, blank=True, default=0)
+#     fcr = models.IntegerField(null=True, blank=True, default=0)
+#     sav = models.IntegerField(null=True, blank=True, default=0) 
 
-    # instructor = Instructor.objects.create(name='tester',email=instructoremailid,ph_no='12345670',ins_name=ins,user_detail=userinstructor)
-    # instructor.save()
-
-    # utype = user_type.objects.create(user_detail=userinstructor,types=2)
-    # utype.save()
-
-# gender = i['gender'],dateofJoining = i['dateofJoining'], birthDate = i['birthDate'], currentCCT = i['currentCCT'], totalVOCScore = i['totalVOCScore'], total_Calls = i['total_Calls'], auxOutTime_Hrs = i['auxOutTime_Hrs'], qcal_Score = i['qcal_Score'], scheduled_Hrs = i['scheduled_Hrs'], sales_Audit_Verification_Percent = i['sales_Audit_Verification_Percent'], staffed_Hrs = i['staffed_Hrs'],fcr_Rate=i['fcr_Rate'],sales_Coverted=i['sales_Coverted'],cctRanking=i['cctranking'],aux_Exception_Hrs=i['aux_Exception_Hrs'])
-#                 up.save()
+#     def __str__(self):
+#         return '%s' % (self.user_detail)        
 
 
-# To use type 
-# python manage.py shell
-# >>from studyaccountsapp.filler import *
-# >>fillusers()
-# AND ENJOY
+# class Team(models.Model):
+#     name = models.CharField(max_length=30)
+#     location = models.CharField(max_length=30)
+#     department = models.CharField(max_length=30)
+#     score = models.IntegerField()
+#     team_leader = models.ForeignKey(UserProfile)
+#     team_cct = models.IntegerField()
+#     team_os = models.IntegerField()
+#     team_fcr = models.IntegerField()
+#     tema_sav = models.IntegerField()
+#     date = models.DateField(default=datetime.date.today)
+    
+#     def __str__(self):
+#         return '%s' % (self.name)
+
+
+# class TeamMembers(models.Model):
+#     team = models.ForeignKey(Team)
+#     user_profile = models.ForeignKey(UserProfile)
+
+#     def __str__(self):
+#         return '%s' % (self.team)
