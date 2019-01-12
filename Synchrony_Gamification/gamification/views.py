@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import logout as auth_logout
-from .models import user_profile
+from .models import UserProfile
 
 
 # Create your views here.
 def dashboard(request):
 	if request.user.is_authenticated():
-		up = user_profile.objects.get(user_detail=request.user)
+		up = UserProfile.objects.get(user_detail=request.user)
 		print(up.emp_Id)
 		return render(request,'index.html',{"up" : up})
 
