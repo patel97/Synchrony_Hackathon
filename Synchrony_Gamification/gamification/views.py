@@ -15,19 +15,28 @@ def login_site(request):
 		user = authenticate(username = email, password = password)
 		if user:
 			login(request, user)
-			return redirect('/dashboard/')
+			return redirect('/bet/')
 		else:
 			return redirect('/login/')
 
-	else:	
+	else:
 		return render(request, 'login.html')
 
 def logout(request):
     if request.user.is_authenticated():
         auth_logout(request)
+        return redirect('/logout_complete/')
     else:
-        return HttpResponse("invalid")
-    
-    return render(request,'login.html')
+        return redirect('/login/')
 
 
+def bet(request):
+	if request.user.is_authenticated():
+		return render(request, 'bet.html')
+
+	else:
+		return redirect('/login/')
+
+
+def logout_complete(request):
+		return render(request, 'logout_complete.html')
