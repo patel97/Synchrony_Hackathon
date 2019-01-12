@@ -87,8 +87,8 @@ class Team(models.Model):
 	team_cct = models.IntegerField()
 	team_os = models.IntegerField()
 	team_fcr = models.IntegerField()
-	tema_sav = models.IntegerField()
-	date = models.DateField(default=datetime.date.today)
+	total_Queries_Solved = models.IntegerField()
+	
 	
 	def __str__(self):
 		return '%s' % (self.name)
