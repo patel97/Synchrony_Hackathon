@@ -1,12 +1,10 @@
 from django.db import models
-from jsonfield import JSONField
 from django.contrib.auth.models import User
+import datetime
 
 # Create your models here.
 
-class user_profile(models.Model):
-	"""docstring for user_profile"""
-	pic = models.ImageField(upload_to = 'media/',blank=True,null=True)
+class UserJson(models.Model):
 	user_detail = models.ForeignKey(User)
 	emp_Id = models.IntegerField(primary_key=True)
 	name = models.CharField(max_length=1000)
@@ -28,3 +26,77 @@ class user_profile(models.Model):
 	cctRanking = models.FloatField()
 	aux_Exception_Hrs = models.FloatField()
 
+	def __str__(self):
+		return '%s' % (self.user_detail)
+
+
+class UserProfile(models.Model):
+	pic = models.ImageField(upload_to = 'media/',blank=True,null=True)
+	user_detail = models.ForeignKey(User)
+	emp_Id = models.IntegerField(primary_key=True)
+	name = models.CharField(max_length=1000)
+	gender = models.CharField(max_length=1)
+	dateofJoining = models.CharField(max_length=1000)
+	birthDate = models.CharField(max_length=1000)
+	level = models.IntegerField(null=True, blank=True, default=0)
+	level_points = models.IntegerField(null=True, blank=True, default=0)
+	betting_points = models.IntegerField(null=True, blank=True, default=1000)
+
+	def __str__(self):
+		return '%s' % (self.user_detail)
+
+
+class BettingBets(models.Model):
+	user_profile = models.ForeignKey(UserProfile)
+	cct = models.CharField(max_length=20, null=True)
+	cct_bet = models.CharField(max_length=20, null=True)
+	qual_score = models.CharField(max_length=20, null=True)
+	qual_score_bet = models.CharField(max_length=20, null=True)
+	os = models.CharField(max_length=20, null=True)
+	os_bet = models.CharField(max_length=20, null=True)
+	fcr = models.CharField(max_length=20, null=True)
+	fcr_bet = models.CharField(max_length=20, null=True)
+	sav = models.CharField(max_length=20, null=True)
+	sav_bet = models.CharField(max_length=20, null=True)
+	total_bet = models.CharField(max_length=20, null=True)
+	total_win = models.CharField(max_length=20, null=True)
+	date = models.DateField(_("Date"), default=datetime.date.today)
+
+	def __str__(self):
+		return '%s' % (self.user_detail)
+
+
+class Level(models.Model):
+	user_profile = models.ForeignKey(UserProfile)
+	cct = models.IntegerField(null=True, blank=True, default=0)
+	qual_score = models.IntegerField(null=True, blank=True, default=0)
+	os = models.IntegerField(null=True, blank=True, default=0)
+	fcr = models.IntegerField(null=True, blank=True, default=0)
+	sav = models.IntegerField(null=True, blank=True, default=0)	
+
+	def __str__(self):
+		return '%s' % (self.user_detail)		
+
+
+class Team(models.Model):
+	name = models.CharField(max_length=30)
+	location = models.CharField(max_length=30)
+	department = models.CharField(max_length=30)
+	score = models.IntegerField()
+	team_leader = models.ForeignKey(UserProfile)
+	team_cct = models.IntegerField()
+	team_os = models.IntegerField()
+	team_fcr = models.IntegerField()
+	tema_sav = models.IntegerField()
+	date = models.DateField(_("Date"), default=datetime.date.today)
+	
+	def __str__(self):
+		return '%s' % (self.name)
+
+
+class TeamMembers(models.Model):
+	team = models.ForeignKey(Team)
+	user_profile = models.ForeignKey(UserProfile)
+
+	def __str__(self):
+		return '%s' % (self.team)
