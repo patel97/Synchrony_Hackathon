@@ -16,11 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from gamification import views
-
+from .views import test
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('gamification.urls')),
     url(r'^login/', views.login_site),
     url(r'^logout/', views.logout),
+    url(r'^test/', test),
 ]

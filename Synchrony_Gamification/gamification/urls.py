@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^dashboard/', views.dashboard),
     url(r'^bet/', views.bet),
     url(r'^logout_complete/', views.logout_complete),
+    url(r'^betting_status/', views.bettingstatus),
 ]
