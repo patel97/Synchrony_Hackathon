@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     url(r'^dashboard/', views.dashboard),
+    url(r'^trading/', views.trading),
     url(r'^bet/', views.bet),
     url(r'^logout_complete/', views.logout_complete),
 ]

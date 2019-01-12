@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import logout as auth_logout
-from .models import UserProfile,Team,TeamMembers
+from .models import UserProfile,Team,TeamMembers,Trading
 
 
 # Create your views here.
@@ -54,3 +54,21 @@ def bet(request):
 
 def logout_complete(request):
 		return render(request, 'logout_complete.html')
+
+def trading(request):
+	if request.user.is_authenticated():
+		if request.method == 'POST':
+			iname = request.POST['iname']
+			duration = request.POST['duration']
+			creds = request.POST['creds']
+			up = UserProfile.objects.get(user_detail=request.user)
+			cname=up.name
+			trade = Trading.objects.filter(issuer_name=iname,duration=duration,creds=creds).update(claimer_name=cname,available=False)
+
+
+			return redirect("/trading/")
+		else:
+			t = Trading.objects.filter(available=True)
+			ct = Trading.objects.filter(available=False)
+			print(ct)
+			return render(request,'trading.html', {'t' : t, 'ct' : ct})
