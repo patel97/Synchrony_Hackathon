@@ -73,7 +73,11 @@ def bettingstatus(request):
 			fcrcred = request.POST['fcrcred']
 			cctbet = request.POST['cctbet']
 			cctcred = request.POST['cctcred']
-			bb = BettingBets.objects.create(user_profile = up, cct = cctcred, cct_bet = cctbet, qual_score = cqscred, qual_score_bet = cqsbet, os = oscred, os_bet = osbet, fcr = fcrcred, fcr_bet = fcrbet, no_of_queries_solved = qscred, no_of_queries_solved_bet = qsbet, total_bet = qscred + oscred + cqscred+ fcrcred + cctcred)
+			bb = BettingBets.objects.create(user_profile = up, cct = cctcred, cct_bet = cctbet, 
+				qual_score = cqscred, qual_score_bet = cqsbet, os = oscred, os_bet = osbet,
+				 fcr = fcrcred, fcr_bet = fcrbet, no_of_queries_solved = qscred, 
+				 no_of_queries_solved_bet = qsbet, 
+				 total_bet = int(qscred) + int(oscred) + int(cqscred)+ int(fcrcred) + int(cctcred))
 			bb.save()
 			return redirect('/betting_status/')
 	else:

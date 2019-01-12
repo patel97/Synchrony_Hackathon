@@ -63,7 +63,7 @@ class BettingBets(models.Model):
 	date = models.DateField(default=datetime.date.today)
 
 	def __str__(self):
-		return '%s' % (self.user_detail)
+		return '%s' % (self.user_profile)
 
 
 class Level(models.Model):
