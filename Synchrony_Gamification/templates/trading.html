@@ -101,24 +101,26 @@
                             </thead>
                             <tbody>
                                 {% for i in t %}
-                                <tr><!-- 
+                                <tr>
+                                    <!-- 
                                     <td>{{ forloop.counter }}</td> -->
                                     <form action="/trading/" method="POST">
                                         {% csrf_token %}
                                         <input value="{{i.issuer_name}}" name="iname" hidden>
                                         <input value="{{i.duration}}" name="duration" hidden>
                                         <input value="{{i.creds}}" name="creds" hidden>
-                                    
-                                    <td>{{i.issuer_name}}</td>
-                                    <td>{{i.duration}}</td>
-                                    <td>{{i.creds}}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                                        <button type="submit" class="btn btn-primary"> Accept
-                                                        </button>
-                                                        
-                                                    </div></td>
-                                                </form>
+
+                                        <td>{{i.issuer_name}}</td>
+                                        <td>{{i.duration}}</td>
+                                        <td>{{i.creds}}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="submit" class="btn btn-primary"> Accept
+                                                </button>
+
+                                            </div>
+                                        </td>
+                                    </form>
                                     <!-- <td>
                                         <span class="label label-sm label-success">Influenza</span>
                                     </td>
@@ -254,13 +256,14 @@
                             </thead>
                             <tbody>
                                 {% for i in ct %}
-                                <tr><!-- 
+                                <tr>
+                                    <!-- 
                                     <td>{{ forloop.counter }}</td> -->
                                     <td>{{i.issuer_name}}</td>
                                     <td>{{i.claimer_name}}</td>
                                     <td>{{i.duration}}</td>
                                     <td>{{i.creds}}</td>
-                                    
+
                                     <!-- <td>
                                         <span class="label label-sm label-success">Influenza</span>
                                     </td>

@@ -2,11 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import logout as auth_logout
-<<<<<<< HEAD
-from .models import UserProfile,Team,TeamMembers,Trading
-=======
 from .models import *
->>>>>>> d192581ee85999bec9b51a5cf8cdbad8edf66076
 
 
 # Create your views here.
@@ -76,10 +72,11 @@ def trading(request):
 
 			return redirect("/trading/")
 		else:
+			up = UserProfile.objects.get(user_detail=request.user)
 			t = Trading.objects.filter(available=True)
 			ct = Trading.objects.filter(available=False)
 			print(ct)
-			return render(request,'trading.html', {'t' : t, 'ct' : ct})
+			return render(request,'trading.html', {'t' : t, 'ct' : ct, "up" : up})
 
 
 def bettingstatus(request):
