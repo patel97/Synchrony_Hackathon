@@ -60,14 +60,14 @@ class BettingBets(models.Model):
 	sav_bet = models.CharField(max_length=20, null=True)
 	total_bet = models.CharField(max_length=20, null=True)
 	total_win = models.CharField(max_length=20, null=True)
-	date = models.DateField(_("Date"), default=datetime.date.today)
+	date = models.DateField(default=datetime.date.today)
 
 	def __str__(self):
 		return '%s' % (self.user_detail)
 
 
 class Level(models.Model):
-	user_profile = models.ForeignKey(UserProfile)
+	user_profile = models.ForeignKey(UserProfile,  related_name='user_profile_level')
 	cct = models.IntegerField(null=True, blank=True, default=0)
 	qual_score = models.IntegerField(null=True, blank=True, default=0)
 	os = models.IntegerField(null=True, blank=True, default=0)
@@ -88,7 +88,7 @@ class Team(models.Model):
 	team_os = models.IntegerField()
 	team_fcr = models.IntegerField()
 	tema_sav = models.IntegerField()
-	date = models.DateField(_("Date"), default=datetime.date.today)
+	date = models.DateField(default=datetime.date.today)
 	
 	def __str__(self):
 		return '%s' % (self.name)
