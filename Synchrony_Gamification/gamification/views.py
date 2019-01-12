@@ -1,12 +1,16 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import logout as auth_logout
+from .models import user_profile
+
 
 # Create your views here.
 def dashboard(request):
-    if request.user.is_authenticated():
-        return render(request,'index.html')
+	if request.user.is_authenticated():
+		up = user_profile.objects.get(user_detail=request.user)
+		print(up.emp_Id)
+		return render(request,'index.html',{"up" : up})
 
 def login_site(request):
 	if request.method == 'POST':
@@ -15,7 +19,7 @@ def login_site(request):
 		user = authenticate(username = email, password = password)
 		if user:
 			login(request, user)
-			return redirect('/bet/')
+			return redirect('/dashboard/')
 		else:
 			return redirect('/login/')
 

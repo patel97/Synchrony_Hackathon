@@ -39,7 +39,7 @@ $(document).ready(function() {
             responsive: true,
             title:{
                 display:true,
-                text:'HOSPITAL SURVEY'
+                text:'HOSPITAL'
             },
             tooltips: {
                 mode: 'index',

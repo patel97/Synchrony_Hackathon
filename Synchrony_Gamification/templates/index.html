@@ -2,6 +2,11 @@
 
 {% load static %}
 
+<script>
+    var name = "{{up.name}}";
+    console.log(name);
+</script>
+
 <div class="page-bar">
     <div class="page-title-breadcrumb">
         <div class=" pull-left">
@@ -86,12 +91,12 @@
     <div class="col-md-4">
         <div class="card card-topline-aqua">
             <div class="card-head">
-                <header>HOSPITAL SURVEY</header>
-                <div class="tools">
+                <header>CUSTOMER SATISFACTION</header>
+                <!-- <div class="tools">
                     <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
                     <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
                     <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                </div>
+                </div> -->
             </div>
             <div class="card-body no-padding height-9">
                 <div class="row">
@@ -106,15 +111,15 @@
     <div class="col-md-8 col-sm-12">
         <div class="card  card-topline-green">
             <div class="card-head">
-                <header>BOOKED APPOINTMENT</header>
-                <div class="tools">
+                <header>TEAM LEADERBOARD</header>
+                <!-- <div class="tools">
                     <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
                     <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
                     <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                </div>
+                </div> -->
             </div>
             <div class="card-body ">
-                <div class="row table-padding">
+                <!-- <div class="row table-padding">
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <div class="btn-group">
                             <button id="addRow" class="btn btn-info">
@@ -143,225 +148,35 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover table-checkable order-column" id="example4">
                         <thead>
                             <tr>
-                                <th>
+                                <!-- <th>
                                     <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
                                         <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
                                         <span></span>
                                     </label>
-                                </th>
-                                <th>Patient Name</th>
-                                <th>Assigned Doctor</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Actions </th>
+                                </th> -->
+                                <th>Team Name</th>
+                                <th>Location</th>
+                                <th>Team Leader</th>
+                                <th>Score</th>
+                                <th>No. of FCR</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="odd gradeX">
-                                <td>
-                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                        <input type="checkbox" class="checkboxes" value="1" />
-                                        <span></span>
-                                    </label>
-                                </td>
-                                <td> Jayesh Patel </td>
-                                <td>
-                                    <a href="mailto:shuxer@gmail.com"> Dr.Rajesh </a>
-                                </td>
-                                <td class="center"> 12/05/2016 </td>
-                                <td class="center"> 10:45 </td>
-                                <td class="center">
-                                    <div class="btn-group">
-                                        <button class="btn btn-xs btn-warning dropdown-toggle center no-margin" type="button"
-                                            data-toggle="dropdown" aria-expanded="false">
-                                            Actions
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-left" role="menu">
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-trash-o"></i>
-                                                    Delete </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-ban"></i>
-                                                    Cancel </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-clock-o"></i>
-                                                    Postpone </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td>
-                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                        <input type="checkbox" class="checkboxes" value="1" />
-                                        <span></span>
-                                    </label>
-                                </td>
-                                <td> Pooja Patel </td>
-                                <td>
-                                    <a href="mailto:looper90@gmail.com"> Dr.Sarah Smith </a>
-                                </td>
-                                <td class="center"> 12/05/2016 </td>
-                                <td class="center"> 10:55 </td>
-                                <td class="center">
-                                    <div class="btn-group">
-                                        <button class="btn btn-xs btn-info dropdown-toggle no-margin" type="button"
-                                            data-toggle="dropdown" aria-expanded="false">
-                                            Actions
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-trash-o"></i>
-                                                    Delete </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-ban"></i>
-                                                    Cancel </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-clock-o"></i>
-                                                    Postpone </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td>
-                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                        <input type="checkbox" class="checkboxes" value="1" />
-                                        <span></span>
-                                    </label>
-                                </td>
-                                <td> Pankaj Singh </td>
-                                <td>
-                                    <a href="mailto:userwow@yahoo.com"> Dr.Rajesh </a>
-                                </td>
-                                <td class="center"> 12/05/2016 </td>
-                                <td class="center"> 11:15 </td>
-                                <td class="center">
-                                    <div class="btn-group">
-                                        <button class="btn btn-xs btn-success dropdown-toggle no-margin" type="button"
-                                            data-toggle="dropdown" aria-expanded="false">
-                                            Actions
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-trash-o"></i>
-                                                    Delete </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-ban"></i>
-                                                    Cancel </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-clock-o"></i>
-                                                    Postpone </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td>
-                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                        <input type="checkbox" class="checkboxes" value="1" />
-                                        <span></span>
-                                    </label>
-                                </td>
-                                <td> Raj Malhotra </td>
-                                <td>
-                                    <a href="mailto:doctormail@gmail.com"> Dr.Megha Trivedi </a>
-                                </td>
-                                <td class="center"> 12/05/2016 </td>
-                                <td class="center"> 11:25 </td>
-                                <td class="center">
-                                    <div class="btn-group">
-                                        <button class="btn btn-xs btn-primary dropdown-toggle no-margin" type="button"
-                                            data-toggle="dropdown" aria-expanded="false">
-                                            Actions
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-trash-o"></i>
-                                                    Delete </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-ban"></i>
-                                                    Cancel </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-clock-o"></i>
-                                                    Postpone </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <td>
-                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                        <input type="checkbox" class="checkboxes" value="1" />
-                                        <span></span>
-                                    </label>
-                                </td>
-                                <td> Sneha Pandya </td>
-                                <td>
-                                    <a href="mailto:doctormail@gmail.com"> Dr.Sarah Smith </a>
-                                </td>
-                                <td class="center"> 12/05/2016 </td>
-                                <td class="center"> 11:35 </td>
-                                <td class="center">
-                                    <div class="btn-group">
-                                        <button class="btn btn-xs btn-warning dropdown-toggle no-margin" type="button"
-                                            data-toggle="dropdown" aria-expanded="false">
-                                            Actions
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-trash-o"></i>
-                                                    Delete </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-ban"></i>
-                                                    Cancel </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"><i class="fa fa-clock-o"></i>
-                                                    Postpone </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
                             <tr class="odd gradeX ">
+                                <td> thecoders </td>
                                 <td>
-                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                        <input type="checkbox" class="checkboxes" value="1" />
-                                        <span></span>
-                                    </label>
+                                    Mumbai    
                                 </td>
-                                <td> Sameer Jain </td>
-                                <td>
-                                    <a href="mailto:doctormail@gmail.com"> Dr.Megha Trivedi </a>
-                                </td>
-                                <td class="center"> 12/05/2016 </td>
-                                <td class="center"> 11:45 </td>
+                                <td class="center">Krutik</td>
+                                <td class="center"> 142</td>
                                 <td class="center">
-                                    <div class="btn-group">
+                                    <!-- <div class="btn-group">
+
                                         <button class="btn btn-xs btn-danger dropdown-toggle no-margin" type="button"
                                             data-toggle="dropdown" aria-expanded="false">
                                             Actions
@@ -381,7 +196,8 @@
                                                     Postpone </a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> -->
+                                    73
                                 </td>
                             </tr>
                         </tbody>
@@ -393,12 +209,12 @@
     <div class="col-md-4 col-sm-12">
         <div class="card  card-topline-red">
             <div class="card-head">
-                <header>DOCTORS LIST</header>
-                <div class="tools">
+                <header> CSR LEADERBOARD </header>
+                <!-- <div class="tools">
                     <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
                     <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
                     <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                </div>
+                </div> -->
             </div>
             <div class="card-body no-padding height-9">
                 <div class="row">

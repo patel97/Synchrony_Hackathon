@@ -67,11 +67,11 @@ $(document).ready(function() {
                 label: 'Dataset 1'
             }],
             labels: [
-                "Red",
-                "Orange",
-                "Yellow",
-                "Green",
-                "Blue"
+                "Excellent",
+                "Good",
+                "Average",
+                "Satisfactory",
+                "Poor"
             ]
         },
         options: {
@@ -81,7 +81,7 @@ $(document).ready(function() {
             },
             title: {
                 display: true,
-                text: 'Doughnut Chart'
+                // text: 'Doughnut Chart'
             },
             animation: {
                 animateScale: true,
