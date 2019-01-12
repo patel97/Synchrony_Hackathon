@@ -1,0 +1,164 @@
+{
+"csrdata": [
+{
+"emp_Id": 32456,
+"name": "Peter, Degenerio",
+"gender": "M",
+"dateofJoining": "2017-01-08",
+"birthDate": "1988-02-09",
+"currentCCT": 125,
+"totalVOCScore": 89,
+"vocScoresForLast2months": [
+78,
+91
+],
+"total_Calls": 32,
+"auxOutTime_Hrs": 0.14,
+"qcal_Score": 88,
+"avgCCTForLast7days": [
+130,
+164,
+240,
+256,
+280,
+111,
+132
+],
+"scheduled_Hrs": 7.43,
+"sales_Audit_Verification_Percent": 80,
+"staffed_Hrs": 6.75,
+"fcr_Rate": 18,
+"sales_Coverted": 40,
+"cctranking": 8.8,
+"aux_Exception_Hrs": 0.67
+},
+{
+"emp_Id": 20896,
+"name": "Raquel, Vowels",
+"gender": "M",
+"dateofJoining": "2017-01-08",
+"birthDate": "1988-02-09",
+"currentCCT": 143,
+"totalVOCScore": 89,
+"vocScoresForLast2months": [
+78,
+91
+],
+"total_Calls": 44,
+"auxOutTime_Hrs": 0.55,
+"qcal_Score": 89,
+"avgCCTForLast7days": [
+130,
+164,
+240,
+256,
+280,
+111,
+132
+],
+"scheduled_Hrs": 6.43,
+"sales_Audit_Verification_Percent": 70,
+"staffed_Hrs": 7.15,
+"fcr_Rate": 30,
+"sales_Coverted": 44,
+"cctranking": 7.8,
+"aux_Exception_Hrs": 0.89
+},
+{
+"emp_Id": 16754,
+"name": "John, Smith",
+"gender": "M",
+"dateofJoining": "2010-01-06",
+"birthDate": "1980-05-05",
+"currentCCT": 112,
+"totalVOCScore": 75,
+"vocScoresForLast2months": [
+72,
+71
+],
+"total_Calls": 54,
+"auxOutTime_Hrs": 0.59,
+"qcal_Score": 91,
+"avgCCTForLast7days": [
+122,
+90,
+156,
+173,
+231,
+110,
+231
+],
+"scheduled_Hrs": 7.2,
+"sales_Audit_Verification_Percent": 87,
+"staffed_Hrs": 6.45,
+"fcr_Rate": 26,
+"sales_Coverted": 33,
+"cctranking": 6.2,
+"aux_Exception_Hrs": 0.44
+},
+{
+"emp_Id": 29945,
+"name": "Marry, Williams",
+"gender": "F",
+"dateofJoining": "2014-10-22",
+"birthDate": "1990-04-11",
+"currentCCT": 156,
+"totalVOCScore": 77,
+"vocScoresForLast2months": [
+92,
+93
+],
+"total_Calls": 42,
+"auxOutTime_Hrs": 0.19,
+"qcal_Score": 89,
+"avgCCTForLast7days": [
+120,
+177,
+222,
+232,
+256,
+133,
+111
+],
+"scheduled_Hrs": 7.2,
+"sales_Audit_Verification_Percent": 75,
+"staffed_Hrs": 6.85,
+"fcr_Rate": 16,
+"sales_Coverted": 34,
+"cctranking": 7.5,
+"aux_Exception_Hrs": 0.27
+},
+{
+"emp_Id": 32403,
+"name": "Ashok, Patro",
+"gender": "M",
+"dateofJoining": "2011-12-01",
+"birthDate": "1984-08-22",
+"currentCCT": 120,
+"totalVOCScore": 92,
+"vocScoresForLast2months": [
+91,
+89
+],
+"total_Calls": 55,
+"auxOutTime_Hrs": 0.14,
+"qcal_Score": 95,
+"avgCCTForLast7days": [
+111,
+112,
+107,
+228,
+223,
+102,
+117
+],
+"scheduled_Hrs": 7.43,
+"sales_Audit_Verification_Percent": 88,
+"staffed_Hrs": 6.75,
+"fcr_Rate": 34,
+"sales_Coverted": 44,
+"cctranking": 9.5,
+"aux_Exception_Hrs": 0.67
+}
+]
+}
