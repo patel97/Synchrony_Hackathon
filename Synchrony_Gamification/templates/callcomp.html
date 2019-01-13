@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block content %}
+
+{% load static %}
+
+       <dir class="row">
+           <div class="col-md-6 col-sm-6">
+                            <div class="card card-topline-red">
+                                <div class="card-head">
+                                    <header>Automatic Call Form</header>
+                                </div>
+                                <form method="POST" action="/callfinal/">
+                                    {%csrf_token%}
+                                    <div class="form-group">
+                                        <label>Call Duration</label>
+                                        <input type="text" name="duration" class="form-control" value = "{{duration}}">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                     <button type="submit" class="btn btn-circle btn-primary">Complete Call</button 
+                                    </div>
+                                </form>
+
+                                </div>
+                            </div>
+                        </div>
+       </dir>
+<!-- end admited patient list -->
+{% load static %}
+<script src="{% static 'assets/js/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/jquery.blockui.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/bootstrap-switch/js/bootstrap-switch.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/counterup/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/counterup/jquery.counterup.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'assets/js/app.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/layout.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/Chart.bundle.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/utils.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/home-data.js' %}" type="text/javascript"></script>
+
+{% endblock content %}

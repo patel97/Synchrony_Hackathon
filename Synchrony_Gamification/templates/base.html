@@ -92,11 +92,11 @@
                         <!-- end language menu -->
                         <!-- start notification dropdown -->
                         <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                            <!-- <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                 data-close-others="true">
                                 <i class="fa fa-bell-o"></i>
                                 <span class="badge orange-bgcolor"> 6 </span>
-                            </a>
+                            </a> -->
                             <ul class="dropdown-menu">
                                 <li class="external">
                                     <h3><span class="bold">Notifications</span></h3>
@@ -328,9 +328,10 @@
                                 </div>
                             </li>
 
+
                             <li class="nav-item" style="margin-left: 15%;">
                                 <i class="fa fa-trophy" aria-hidden="true" style="color:yellow;"></i><span class="txtOnline">
-                                    Level {{ up.level }}</span>
+                                    Level {{ up.level }} ({{up.level_points}}pts)</span>
                                 <br>
                                 <i class="fa fa-trophy" aria-hidden="true" style="color:yellow;"></i><span class="txtOnline">
                                     Creds {{ up.betting_points }}</span>
@@ -349,6 +350,14 @@
                                 </a>
                                 
                             </li>
+                            <li class="nav-item">
+                                <a href="/complete_call/" class="nav-link nav-toggle">
+                                    <i class="fa fa-envelope"></i>
+                                    <span class="title">Demo</span>
+                                    
+                                </a>
+                                
+                            </li>
                             <li class="nav-item  ">
                                 <a href="/betting_status/" class="nav-link nav-toggle"><i class="fa fa-book"></i>
                                     <span class="title">Betting Status</span></a>
@@ -356,6 +365,7 @@
                             </li>
                             <li class="nav-item  ">
                                 <a href="/trading/" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
+
                                     <span class="title">Trading</span> 
                                 </a>
                                 
