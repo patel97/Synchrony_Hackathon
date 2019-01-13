@@ -224,82 +224,21 @@
                         {% for i in leaderboard %}
                         <li>
                             <div class="prog-avatar">
-                                <img src="img/doc/doc1.svg" alt="" width="40" height="40">
+                                {% if up.pic %}
+                                <img alt="" class="img-circle user-img-circle" alt="User Image" src="/{{ up.pic }}" />
+                                {% else %}
+                                <img alt="" class="img-circle user-img-circle" alt="User Image" src="{% static 'assets/img/dp.svg' %}" />
+                                {% endif %}
                             </div>
                             <div class="details">
                                 <div class="title">
                                     <a href="#">{{i.name}}</a> 
                                 </div>
-                                <div>
+                            <div>
                                     <span class="clsAvailable">{{i.level_points}}</span>
                                 </div>
                             </div>
                         </li>
-                        <!-- <li>
-                            <div class="prog-avatar">
-                                <img src="img/doc/doc2.svg" alt="" width="40" height="40">
-                            </div>
-                            <div class="details">
-                                <div class="title">
-                                    <a href="#">Dr.Sarah Smith</a> -(MBBS,MD)
-                                </div>
-                                <div>
-                                    <span class="clsAvailable">Available</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="prog-avatar">
-                                <img src="img/doc/doc3.svg" alt="" width="40" height="40">
-                            </div>
-                            <div class="details">
-                                <div class="title">
-                                    <a href="#">Dr.John Deo</a> - (BDS,MDS)
-                                </div>
-                                <div>
-                                    <span class="clsNotAvailable">Not Available</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="prog-avatar">
-                                <img src="img/doc/doc4.svg" alt="" width="40" height="40">
-                            </div>
-                            <div class="details">
-                                <div class="title">
-                                    <a href="#">Dr.Jay Soni</a> - (BHMS)
-                                </div>
-                                <div>
-                                    <span class="clsOnLeave">On Leave</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="prog-avatar">
-                                <img src="img/doc/doc5.svg" alt="" width="40" height="40">
-                            </div>
-                            <div class="details">
-                                <div class="title">
-                                    <a href="#">Dr.Jacob Ryan</a> - (MBBS,MS)
-                                </div>
-                                <div>
-                                    <span class="clsNotAvailable">Not Available</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="prog-avatar">
-                                <img src="img/doc/doc6.svg" alt="" width="40" height="40">
-                            </div>
-                            <div class="details">
-                                <div class="title">
-                                    <a href="#">Dr.Megha Trivedi</a> - (MBBS,MS)
-                                </div>
-                                <div>
-                                    <span class="clsAvailable">Available</span>
-                                </div>
-                            </div>
-                        </li> -->
                         {% endfor %}
                     </ul>
                     <!-- <div class="text-center">

@@ -76,7 +76,7 @@ class Level(models.Model):
 	sav = models.IntegerField(null=True, blank=True, default=0)
 
 	def __str__(self):
-		return '%s' % (self.user_detail)		
+		return '%s' % (self.user_profile)		
 
 
 class Team(models.Model):
@@ -84,11 +84,11 @@ class Team(models.Model):
 	location = models.CharField(max_length=30)
 	department = models.CharField(max_length=30)
 	score = models.IntegerField()
-	team_leader = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	team_cct = models.IntegerField()
 	team_os = models.IntegerField()
 	team_fcr = models.IntegerField()
 	total_queries_solved = models.IntegerField()
+	team_leader = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	
 	
 	def __str__(self):
@@ -96,11 +96,11 @@ class Team(models.Model):
 
 
 class TeamMembers(models.Model):
-	team = models.ForeignKey(Team,on_delete=models.CASCADE)
+	team = models.ForeignKey(Team, on_delete=models.CASCADE)
 	user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
 	def __str__(self):
-		return '%s' % (self.team)
+		return '%s' % (self.user_profile)
 
 
 class Trading(models.Model):

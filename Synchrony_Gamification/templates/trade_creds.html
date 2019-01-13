@@ -3,7 +3,56 @@
 
 {% load static %}
 
-<div class="page-bar">
+<style>
+    .slidecontainer {
+          width: 100%;
+        }
+        
+        .slider {
+          -webkit-appearance: none;
+          width: 100%;
+          height: 15px;
+          border-radius: 5px;
+          background: #d3d3d3;
+          outline: none;
+          opacity: 0.7;
+          -webkit-transition: .2s;
+          transition: opacity .2s;
+        }
+        
+        .slider:hover {
+          opacity: 1;
+        }
+        
+        .slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: #4CAF50;
+          cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: #4CAF50;
+          cursor: pointer;
+        }
+</style>
+
+<script>
+    function handleSlider1() {
+            console.log("jjfjf");
+            document.getElementById('points1').innerText = document.getElementById('myRange1').value
+            var cred = document.getElementById('myRange1').value
+            document.getElementById('creds1').innerText ="You can win "+Math.ceil(0.15*cred)+" points" ;
+            
+        }
+</script>
+            <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
                                 <div class="page-title">Trade Creds For Level Up</div>
@@ -16,13 +65,73 @@
                                 <li class="active">User Profile</li>
                             </ol> -->
                         </div>
-
+<!-- 
                         <div class="col-md-12">
                             <p>{{ up.level }}</p>
                             <p>{{ up.level_points }}</p>
                             <p>{{ up.betting_points }}</p>
                             <p>{{ amount }}</p>
+
+                        </div> -->
+                        <div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card card-topline-yellow">
+            <div class="card-head">
+                <header></header>
+            </div>
+            <div class="card-body" id="bar-parent">
+                <form method="POST" action="/trade_creds/" class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="form-body">
+                        <h3 class="form-section">Trade Cred for Level Up</h3>
+
+
+                        <div class="slidecontainer">
+
+                            <div class=row">
+                                <div class="col-md-10">
+                                    <input name="cctbet" type="range" min="0" max="{{up.betting_points}}" value="0" class="slider" id="myRange1" oninput="handleSlider1();" >
+                                </div>
+                                <div class="col-md-2 " style="margin-top : -15px;">
+                                    <h3>
+                                        <p><span id="points1">
+                                            0
+                                            </span></p>
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                
+                                <div class="col-md-4">
+                                    
+                                </div>
+                                <div class="col-md-4">
+                                    <button id="creds1" type="button" style="padding-bottom : 5px;" class="btn btn-default btn-lg m-b-10">
+                                        You can win 0 points
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+
+                        
+
+                        
+
+                        <div>
+                            <button type="submit" class="btn btn-primary" style="margin-left : 40%;">
+                                Level up!
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
 
 
 

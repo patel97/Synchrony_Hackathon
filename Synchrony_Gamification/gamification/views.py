@@ -33,9 +33,16 @@ def profile(request):
 
 		level = Level.objects.get(user_profile=up)
 
-		return render(request,'user_profile.html',{"up" : up, "level" : level })
+		required = creds_level_conversion(up.level+1)
+
+		progress = str(str(up.level_points) + '/' + str(required))
+		progp = up.level_points/required*100
+
+		return render(request,'user_profile.html',{"up" : up, "level" : level,
+		 "progress" : progress, "progp" : progp })
 	else:
 		return redirect('/login/')
+
 
 def login_site(request):
 	if request.method == 'POST':
@@ -71,15 +78,14 @@ def bet(request):
 		return redirect('/login/')
 
 
-
-
 def logout_complete(request):
-		return render(request, 'logout_complete.html')
+	return render(request, 'logout_complete.html')
 
 def create_trade(request):
 	if request.method == "POST":
-		c=request.POST['duration']*100
-
+		d=request.POST['duration']
+		c=int(d)*100
+		print(c)
 		trade = Trading.objects.create(issuer_name=request.POST['name'],duration=request.POST['duration'],creds=c,available=True)
 		return redirect("/profile/")
 
@@ -100,7 +106,7 @@ def trading(request):
 			up = UserProfile.objects.get(user_detail=request.user)
 			t = Trading.objects.filter(available=True)
 			ct = Trading.objects.filter(available=False)
-			print(ct)
+			# print(ct)
 			return render(request,'trading.html', {'t' : t, 'ct' : ct, "up" : up})
 
 	else:
@@ -138,15 +144,28 @@ def trade_creds(request):
 		up = UserProfile.objects.get(user_detail=request.user)
 
 		if request.method == 'POST':
-				pass
+			cctbet = request.POST['cctbet']
+			print(cctbet)
 
+			val = up.betting_points - int(cctbet)
+			up.betting_points = val
+
+			total_conversion = ((15 / 100) * int(cctbet))
+
+			up.level_points = up.level_points + total_conversion
+
+			tip = creds_level_conversion(up.level+1)
+
+			if up.level_points > tip:
+				up.level = up.level + 1
+
+			up.save()
+
+			return redirect('/trade_creds/')
 
 		else:
 
-			amount = creds_level_conversion(up.level)
-			
-
-			return render(request, 'trade_creds.html', { 'up' : up, 'amount' : amount })
+			return render(request, 'trade_creds.html', { 'up' : up })
 
 	else:
 		return redirect('/login/')
@@ -154,11 +173,11 @@ def trade_creds(request):
 
 def creds_level_conversion(level): 
     switcher = {
-        0: 1000,
-        1: 1500, 
-        2: 2000, 
-        3: 3000, 
-        4: 5000,
+        1: 1000,
+        2: 1500, 
+        3: 2000,
+        4: 3000, 
+        5: 5000,
     } 
 
     return switcher.get(level, 99999)
@@ -169,10 +188,25 @@ def team_view(request):
 		up = UserProfile.objects.get(user_detail=request.user)
 
 		if up.is_manager:
-			team = Team.objects.get(team_leader=up)
-			
 
-			return render(request, 'team_view.html', {"up" : up})
+			team = Team.objects.get(team_leader=up)
+			# print(team)
+
+			listing = TeamMembers.objects.filter(team=team)
+			print(listing)
+
+			details = []
+			for i in listing:
+				ups = UserProfile.objects.get(emp_Id=int(str(i)))
+				details.append(Level.objects.get(user_profile=ups))
+				print(details)
+
+			link = {}
+			link = dict(zip(listing, details))
+			print(link)
+
+			return render(request, 'team_view.html', { 'up' : up, 'listing' : listing,
+			 'link' : link })
 
 		else:
 			return HttpResponse('You Should Not Be Here!')

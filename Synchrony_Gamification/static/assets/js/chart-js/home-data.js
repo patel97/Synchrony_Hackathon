@@ -271,11 +271,16 @@ $(document).ready(function () {
         data: {
             datasets: [{
                 data: [
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
-                    randomScalingFactor(),
+                    // randomScalingFactor(),
+                    // randomScalingFactor(),
+                    // randomScalingFactor(),
+                    // randomScalingFactor(),
+                    // randomScalingFactor(),
+                    40,
+                    20,
+                    20,
+                    10,
+                    10,
                 ],
                 backgroundColor: [
                     window.chartColors.red,
@@ -295,7 +300,7 @@ $(document).ready(function () {
             ]
         },
         options: {
-            responsive: true,
+            responsive: false,
             legend: {
                 position: 'top',
             },
