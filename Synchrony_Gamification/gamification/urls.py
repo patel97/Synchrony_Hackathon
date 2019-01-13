@@ -18,11 +18,13 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^dashboard/', views.dashboard),
+    url(r'^$', views.dashboard),
     url(r'^profile/', views.profile),
     url(r'^trading/', views.trading),
     url(r'^bet/', views.bet),
     url(r'^create_trade/', views.create_trade),
     url(r'^logout_complete/', views.logout_complete),
     url(r'^betting_status/', views.bettingstatus),
+    url(r'^trade_creds/', views.trade_creds),
+    url(r'^team_view/', views.team_view),
 ]

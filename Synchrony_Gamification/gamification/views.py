@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import logout as auth_logout
@@ -22,14 +22,20 @@ def dashboard(request):
 		for i in all_mem:
 			print(i.team.name)	
 		return render(request,'index.html',{"up" : up, "team":team, "leaderboard":leaderboard, "all_mem":all_mem})
+	else:
+		return redirect('/login/')
+
 
 def profile(request):
 	if request.user.is_authenticated:
 		up = UserProfile.objects.get(user_detail=request.user)
-		print("jhsd")
 		print(up.emp_Id)
-		return render(request,'user_profile.html',{"up" : up})
-	
+
+		level = Level.objects.get(user_profile=up)
+
+		return render(request,'user_profile.html',{"up" : up, "level" : level })
+	else:
+		return redirect('/login/')
 
 def login_site(request):
 	if request.method == 'POST':
@@ -38,7 +44,7 @@ def login_site(request):
 		user = authenticate(username = email, password = password)
 		if user:
 			login(request, user)
-			return redirect('/dashboard/')
+			return redirect('/')
 		else:
 			return redirect('/login/')
 
@@ -56,8 +62,9 @@ def logout(request):
 def bet(request):
 	if request.user.is_authenticated:
 		print(request.user)
-		up = UserJson.objects.get(user_detail=request.user)
+		up = UserProfile.objects.get(user_detail=request.user)
 		print(up.emp_Id)
+
 		return render(request,'bet.html',{"up" : up})
 
 	else:
@@ -75,6 +82,7 @@ def create_trade(request):
 
 		trade = Trading.objects.create(issuer_name=request.POST['name'],duration=request.POST['duration'],creds=c,available=True)
 		return redirect("/profile/")
+
 
 def trading(request):
 	if request.user.is_authenticated:
@@ -95,9 +103,12 @@ def trading(request):
 			print(ct)
 			return render(request,'trading.html', {'t' : t, 'ct' : ct, "up" : up})
 
+	else:
+		return redirect('/login/')
+
 
 def bettingstatus(request):
-	up = UserProfile.objects.get(user_detail = request.user)		
+	up = UserProfile.objects.get(user_detail = request.user)	
 	if request.method  == "POST":
 		if request.user.is_authenticated:
 			qsbet = request.POST['qsbet']
@@ -118,6 +129,53 @@ def bettingstatus(request):
 			bb.save()
 			return redirect('/betting_status/')
 	else:
-
 		return render(request, 'bettingstatus.html', {"up" : up})
 
+
+def trade_creds(request):
+	if request.user.is_authenticated:
+		
+		up = UserProfile.objects.get(user_detail=request.user)
+
+		if request.method == 'POST':
+				pass
+
+
+		else:
+
+			amount = creds_level_conversion(up.level)
+			
+
+			return render(request, 'trade_creds.html', { 'up' : up, 'amount' : amount })
+
+	else:
+		return redirect('/login/')
+
+
+def creds_level_conversion(level): 
+    switcher = {
+        0: 1000,
+        1: 1500, 
+        2: 2000, 
+        3: 3000, 
+        4: 5000,
+    } 
+
+    return switcher.get(level, 99999)
+
+
+def team_view(request):
+	if request.user.is_authenticated:
+		up = UserProfile.objects.get(user_detail=request.user)
+
+		if up.is_manager:
+			team = Team.objects.get(team_leader=up)
+			
+
+			return render(request, 'team_view.html', {"up" : up})
+
+		else:
+			return HttpResponse('You Should Not Be Here!')
+
+	else:
+		return redirect('/login/')
