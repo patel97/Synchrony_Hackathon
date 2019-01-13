@@ -108,3 +108,6 @@ class Trading(models.Model):
 	claimer_name = models.CharField(max_length=1000,blank=True)
 	creds = models.IntegerField()
 	available = models.BooleanField(default=True)
+
+	def __str__(self):
+		return '%s' % (self.issuer_name)

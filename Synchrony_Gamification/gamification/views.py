@@ -46,7 +46,7 @@ def login_site(request):
 		return render(request, 'login.html')
 
 def logout(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         auth_logout(request)
         return redirect('/logout_complete/')
     else:
@@ -54,7 +54,7 @@ def logout(request):
 
 
 def bet(request):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated:
 		print(request.user)
 		up = UserJson.objects.get(user_detail=request.user)
 		print(up.emp_Id)
@@ -77,7 +77,7 @@ def create_trade(request):
 		return redirect("/profile/")
 
 def trading(request):
-	if request.user.is_authenticated():
+	if request.user.is_authenticated:
 		if request.method == 'POST':
 			iname = request.POST['iname']
 			duration = request.POST['duration']
@@ -99,7 +99,7 @@ def trading(request):
 def bettingstatus(request):
 	up = UserProfile.objects.get(user_detail = request.user)		
 	if request.method  == "POST":
-		if request.user.is_authenticated():
+		if request.user.is_authenticated:
 			qsbet = request.POST['qsbet']
 			qscred = request.POST['qscred']
 			oscred = request.POST['oscred']
