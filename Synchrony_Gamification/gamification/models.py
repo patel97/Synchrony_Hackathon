@@ -76,7 +76,17 @@ class Level(models.Model):
 	sav = models.IntegerField(null=True, blank=True, default=0)
 
 	def __str__(self):
-		return '%s' % (self.user_detail)		
+		return '%s' % (self.user_profile)		
+
+
+class BetBoxes(models.Model):
+	user_profile = models.ForeignKey(UserProfile,  related_name='bet_box', on_delete=models.CASCADE)
+	os = models.IntegerField(null=True, blank=True, default=0)
+	fcr = models.IntegerField(null=True, blank=True, default=0)
+	noqs = models.IntegerField(null=True, blank=True, default=0)
+
+	def __str__(self):
+		return '%s' % (self.user_profile)		
 
 
 class Team(models.Model):

@@ -27,4 +27,12 @@ urlpatterns = [
     url(r'^betting_status/', views.bettingstatus),
     url(r'^trade_creds/', views.trade_creds),
     url(r'^team_view/', views.team_view),
+    url(r'^complete_call/', views.complete_call),
+    url(r'^callfinal/', views.callfinal),
+
+
+
+    url(r'^call/', views.call),
+
+
 ]

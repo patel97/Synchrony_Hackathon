@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import logout as auth_logout
-
+from twilio.rest import Client
+import random
 from .models import *
 
 
@@ -127,9 +128,15 @@ def bettingstatus(request):
 				 no_of_queries_solved_bet = qsbet, 
 				 total_bet = int(qscred) + int(oscred) + int(cqscred)+ int(fcrcred) + int(cctcred))
 			bb.save()
+			up.betting_points-=int(qscred) + int(oscred) + int(cqscred)+ int(fcrcred) + int(cctcred)
+			up.save()
+			bx = BetBoxes.objects.create(user_profile = up, os = 0, fcr = 0, noqs = 0)
+			bx.save()
 			return redirect('/betting_status/')
+
 	else:
-		return render(request, 'bettingstatus.html', {"up" : up})
+		bx = BetBoxes.objects.get(user_profile = up)
+		return render(request, 'bettingstatus.html', {"up" : up, "bx" : bx})
 
 
 def trade_creds(request):
@@ -179,3 +186,81 @@ def team_view(request):
 
 	else:
 		return redirect('/login/')
+
+def complete_call(request):
+	if request.user.is_authenticated:
+		up = UserProfile.objects.get(user_detail=request.user)
+		return render(request,'call.html',{"up" : up})		
+
+
+
+def call(request):
+
+
+
+# Your Account Sid and Auth Token from twilio.com/console
+
+	account_sid = 'ACc74819c84a2b3b685476b29d1affba76'
+	auth_token = 'f209d606239c309c0e31c2009dcfbe81'
+	client = Client(account_sid, auth_token)
+	call = client.calls.create(
+	                        url='http://demo.twilio.com/docs/voice.xml',
+	                        to='+917303153300',
+	                        from_='+17342924458'
+	                    )
+
+	
+	while(client.calls(call.sid).fetch().status!="completed"):
+		pass
+	print(client.calls(call.sid).fetch().duration)
+	duration = client.calls(call.sid).fetch().duration
+	up = UserProfile.objects.get(user_detail=request.user)
+	request.session['duration'] = duration
+	return redirect('/callfinal/')
+
+def callfinal(request):
+	if request.method == "POST":
+		duration = request.POST['duration']
+		up = UserProfile.objects.get(user_detail = request.user)
+		bb = BettingBets.objects.get(user_profile = up)
+		print(duration)
+		print(bb.cct)
+		if(int(duration) <= int(bb.cct)):
+			print("hi")
+			if int(bb.cct) >= 50 and int(bb.cct) <= 100:
+				points = int(bb.cct_bet)*1.1
+			elif int(bb.cct) >100 and int(bb.cct) <= 150:
+				points = int(bb.cct_bet) * 1.15
+			else:
+				points = int(bb.cct_bet) * 1.2
+			up.betting_points += points
+			print(up.betting_points)
+
+			#level points calculations
+			#cct
+			#qual_score
+			#os
+			#fcr
+			#noofqueries
+		usr = UserJson.objects.get(user_detail = request.user)
+		incr = usr.currentCCT*0.25+usr.qcal_Score*0.15+usr.fcr_Rate*0.15+usr.totalVOCScore*0.30+usr.sales_Coverted*0.05
+		up.level_points+=incr
+		if up.level_points > 50:
+			up.level=1
+		if up.level_points > 200:
+			up.level=2
+		if up.level_points > 215:
+			up.level=3	
+		up.save()
+
+		bx = BetBoxes.objects.get(user_profile = up)
+		bx.fcr += random.randint(1,10)
+		bx.os += random.randint(1,10) 
+		bx.noqs += random.randint(1,10)
+		bx.save()  
+		print(up.level_points)
+				
+		return redirect('/')	
+	else:
+		up = UserProfile.objects.get(user_detail=request.user)
+		return render(request,'callcomp.html',{"up" : up, "duration":request.session['duration']})
