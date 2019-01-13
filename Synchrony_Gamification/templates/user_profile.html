@@ -8,13 +8,13 @@
                             <div class=" pull-left">
                                 <div class="page-title">User Profile</div>
                             </div>
-                            <ol class="breadcrumb page-breadcrumb pull-right">
+                            <!-- <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
                                 <li><a class="parent-item" href="#">UI Elements</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
                                 <li class="active">User Profile</li>
-                            </ol>
+                            </ol> -->
                         </div>
                     </div>
                     <div class="row">
@@ -25,7 +25,7 @@
                                     <div class="card-body no-padding height-9">
                                         <div class="row">
                                             <div class="profile-userpic">
-                                                <img src="{% static 'assets/img/dp.svg' %}" class="img-responsive" alt=""> </div>
+                                                <img src="/{{ up.pic }}" class="img-responsive" alt=""> </div>
                                         </div>
                                         <div class="profile-usertitle">
                                             <div class="profile-usertitle-name">{{up.name}} </div><!-- 
@@ -33,13 +33,13 @@
                                         </div>
                                         <ul class="list-group list-group-unbordered">
                                             <li class="list-group-item">
-                                                <b>Level</b> <a class="pull-right"><i class="fa fa-trophy" aria-hidden="true" style="color:yellow;"></i> 5</a>
+                                                <b>Level</b> <a class="pull-right"><i class="fa fa-trophy" aria-hidden="true" style="color:yellow;"></i> {{ up.level }}</a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b>Score</b> <a class="pull-right">750</a>
+                                                <b>Score</b> <a class="pull-right">{{ up.level_points }}</a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b>Creds</b> <a class="pull-right">11,172</a>
+                                                <b>Creds</b> <a class="pull-right">{{ up.betting_points }}</a>
                                             </li>
                                         </ul>
                                         <!-- END SIDEBAR USER TITLE -->

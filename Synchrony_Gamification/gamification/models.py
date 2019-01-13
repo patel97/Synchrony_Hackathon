@@ -41,6 +41,7 @@ class UserProfile(models.Model):
 	level = models.IntegerField(null=True, blank=True, default=0)
 	level_points = models.IntegerField(null=True, blank=True, default=0)
 	betting_points = models.IntegerField(null=True, blank=True, default=1000)
+	is_manager = models.BooleanField(default=False)
 
 	def __str__(self):
 		return '%s' % (self.user_detail)
@@ -72,7 +73,7 @@ class Level(models.Model):
 	qual_score = models.IntegerField(null=True, blank=True, default=0)
 	os = models.IntegerField(null=True, blank=True, default=0)
 	fcr = models.IntegerField(null=True, blank=True, default=0)
-	sav = models.IntegerField(null=True, blank=True, default=0)	
+	sav = models.IntegerField(null=True, blank=True, default=0)
 
 	def __str__(self):
 		return '%s' % (self.user_detail)		
@@ -87,7 +88,7 @@ class Team(models.Model):
 	team_cct = models.IntegerField()
 	team_os = models.IntegerField()
 	team_fcr = models.IntegerField()
-	total_Queries_Solved = models.IntegerField()
+	total_queries_solved = models.IntegerField()
 	
 	
 	def __str__(self):
@@ -100,6 +101,7 @@ class TeamMembers(models.Model):
 
 	def __str__(self):
 		return '%s' % (self.team)
+
 
 class Trading(models.Model):
 	issuer_name = models.CharField(max_length=1000)

@@ -10,7 +10,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="description" content="Responsive Admin Template" />
     <meta name="author" content="RedstarHospital" />
-    <title>Redstar Hospital | Bootstrap Responsive Hospital Admin Template</title>
+    <title>Some Name</title>
 
     <!-- google font -->
     <link href="../../fonts.googleapis.com/cssbc32.css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet"
@@ -43,9 +43,9 @@
                 <div class="page-logo">
                     <!-- <a href="index-2.html">
                         <img src="{% static 'assets/img/logo.png' %}" alt="logo" class="logo-default" /> </a> -->
-                    <div class="menu-toggler sidebar-toggler">
+                    <!-- <div class="menu-toggler sidebar-toggler">
                         <span></span>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- logo end -->
                 <!-- <form class="search-form-opened" action="#" method="GET">
@@ -242,7 +242,11 @@
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                                 data-close-others="true">
-                                <img alt="" class="img-circle " src="{% static 'assets/img/dp.svg' %}" />
+                                {% if up.pic %}
+                                <img alt="" class="img-circle user-img-circle" alt="User Image" src="/{{ up.pic }}" />
+                                {% else %}
+                                <img alt="" class="img-circle user-img-circle" alt="User Image" src="{% static 'assets/img/dp.svg' %}" />
+                                {% endif %}
                                 <span class="username username-hide-on-mobile"> {{up.name}} </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
@@ -300,21 +304,45 @@
                             <li class="sidebar-user-panel">
                                 <div class="user-panel">
                                     <div class="pull-left image">
-                                        <img src="{% static 'assets/img/dp.svg' %}" class="img-circle user-img-circle" alt="User Image" />
+
+                                        {% if up.pic %}
+                                        <img alt="" class="img-circle user-img-circle" alt="User Image" src="/{{ up.pic }}" />
+                                        {% else %}
+                                        <img alt="" class="img-circle user-img-circle" alt="User Image" src="{% static 'assets/img/dp.svg' %}" />
+                                        {% endif %}
+                                        
+                                        
                                     </div>
                                     <div class="pull-left info">
-                                        <p> {{up.name}} </p>
+                                        <a href="/profile/" style="color: white;">
+                                            <p> {{up.name}} </p>
+                                        </a>
+                                    </div>
+                                    <!-- <div class="pull-left info">
                                         <a href="#"><i class="fa fa-trophy" aria-hidden="true" style="color:yellow;"></i><span class="txtOnline">
                                                 Level 5</span></a>
-                                    </div>
+                                                <br>
+                                        <a href="#"><i class="fa fa-trophy" aria-hidden="true" style="color:yellow;"></i><span class="txtOnline">
+                                        Level 5</span></a>
+                                    </div> -->
                                 </div>
                             </li>
-                            <li class="nav-item start active open">
-                                <a href="index-2.html" class="nav-link "> <i class="fa fa-tachometer"></i> <span class="title">Dashboard</span>
+
+                            <li class="nav-item" style="margin-left: 15%;">
+                                <i class="fa fa-trophy" aria-hidden="true" style="color:yellow;"></i><span class="txtOnline">
+                                    Level {{ up.level }}</span>
+                                <br>
+                                <i class="fa fa-trophy" aria-hidden="true" style="color:yellow;"></i><span class="txtOnline">
+                                    Creds {{ up.level }}</span>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a href="/" class="nav-link "> <i class="fa fa-tachometer"></i> <span class="title">Dashboard</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link nav-toggle">
+                                <a href="/bet/" class="nav-link nav-toggle">
                                     <i class="fa fa-envelope"></i>
                                     <span class="title">Place a Bet</span>
                                     
@@ -322,27 +350,40 @@
                                 
                             </li>
                             <li class="nav-item  ">
-                                <a href="#" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                                <a href="/betting_status/" class="nav-link nav-toggle"><i class="fa fa-book"></i>
                                     <span class="title">Betting Status</span></a>
                                 
                             </li>
                             <li class="nav-item  ">
-                                <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
+                                <a href="/create_trade/" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
                                     <span class="title">Trading</span> 
                                 </a>
                                 
                             </li>
-                            <li class="nav-item  ">
+                            <!-- <li class="nav-item  ">
                                 <a href="#" class="nav-link nav-toggle"> <i class="fa fa-users"></i>
                                     <span class="title">Forum</span> 
                                 </a>
                                 
-                            </li>
+                            </li> -->
                             <li class="nav-item  ">
                                 <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
                                     <span class="title">Feedback</span> 
                                 </a>
-                                
+                            </li>
+
+                            {% if up.is_manager is True %}
+                                <li class="nav-item  ">
+                                <a href="/team_view/" class="nav-link nav-toggle"> <i class="fa fa-eye"></i>
+                                    <span class="title">Team View</span> 
+                                </a>                                    
+                                </li>
+                            {% endif %}
+
+                            <li class="nav-item  ">
+                                <a href="/trade_creds/" class="nav-link nav-toggle"> <i class="fa fa-level-up"></i>
+                                    <span class="title">Trade Creds For Level up</span> 
+                                </a>
                             </li>
 
                             <li class="nav-item  ">
@@ -351,6 +392,7 @@
                                 </a>
                                 
                             </li>
+
 
                             <!-- <li class="nav-item  ">
                                 <a href="#" class="nav-link nav-toggle"> <i class="fa fa-bed"></i>

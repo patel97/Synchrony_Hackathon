@@ -1,0 +1,79 @@
+
+{% extends 'base.html' %} {% block content %}
+
+{% load static %}
+
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+            <div class="page-title">Team View</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card  card-topline-yellow">
+            <div class="card-head">
+                <header>Team Members</header>
+                <div class="tools">
+                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                </div>
+            </div>
+            <div class="card-body ">
+                <div class="table-wrap">
+                    <div class="table-responsive">
+                        <table class="table display product-overview mb-30" id="support_table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Gender</th>
+                                    <th>Level Points</th>
+                                    <th>Betting Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in all_mem %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{i.user_profile.name}}</td>
+                                    <td>{{i.user_profile.gender}}</td>
+                                    <td>{{i.user_profile.level_points}}</td>
+                                    <td>{{i.user_profile.betting_points}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% load static %}
+<script src="{% static 'assets/js/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/jquery.blockui.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/bootstrap-switch/js/bootstrap-switch.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/counterup/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/counterup/jquery.counterup.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'assets/js/app.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/layout.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/Chart.bundle.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/utils.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/chart-js/home-data.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' %}" type="text/javascript" charset="UTF-8"></script>
+    <script src="{% static 'assets/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker-init.js' %}" type="text/javascript" charset="UTF-8"></script>
+    <script src="{% static 'assets/js/bootstrap-timepicker/js/bootstrap-timepicker.min.js' %}" type="text/javascript" charset="UTF-8"></script>
+    <script src="{% static 'assets/js/bootstrap-timepicker/js/bootstrap-timepicker-init.js' %}" type="text/javascript" charset="UTF-8"></script>
+
+
+{% endblock content %}
